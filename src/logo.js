@@ -1,9 +1,20 @@
 var color = 'orange';
+var animationTime = 3; // in seconds
+
 
 var rects = new Group().addTo(stage);
 rects.attr({scale:0.2, rotation: -0.25*Math.PI, y: 200});
+
+var animation = new KeyframeAnimation(animationTime + 's', {
+    from: {opacity: 0},
+    '80%': {opacity: 0},
+    to: {opacity: 1}
+});
 var overlay = new Group().addTo(stage);
-overlay.attr({x: 120, y: 45, scale:0.87, origin: {x:0, y:0}});
+overlay
+  .attr({x: 120, y: 45, scale:0.87, origin: {x:0, y:0}})
+  .animate(animation)
+;
 
 var rect = new Rect(0, 0, 100, 100)
   .attr({fillColor: color, rotation: 0.25*Math.PI, origin: {x: 0, y: 0}, scaleY: 2})
@@ -11,11 +22,16 @@ var rect = new Rect(0, 0, 100, 100)
 
 var box = rect.getAbsoluteBoundingBox();
 function cloneRect(xMultiplier, yMultiplier) {
+  var animation = new KeyframeAnimation(Math.random()* animationTime + 's', {
+      from: {x:0, y:0},
+      // '50%': {x:500, y:500},
+      to: {x: xMultiplier * box.width, y: yMultiplier * box.height}
+  });
   return rect
     .clone({attributes: true})
     .attr({matrix: rect.attr().matrix})
-    .attr({x: xMultiplier * box.width, y: yMultiplier * box.height})
     .addTo(rects)
+    .animate(animation)
   ;
 }
 
