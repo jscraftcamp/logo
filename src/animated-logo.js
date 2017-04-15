@@ -1,8 +1,9 @@
 var color = 'orange';
 var animationTime = 1; // in seconds
 
+var mainMovie = new Movie().addTo(stage);
 
-var rects = new Group().addTo(stage);
+var rects = new Group().addTo(mainMovie);
 rects.attr({scale:0.2, rotation: -0.25*Math.PI, y: 200});
 
 var animation = new KeyframeAnimation(animationTime + 's', {
@@ -10,7 +11,7 @@ var animation = new KeyframeAnimation(animationTime + 's', {
     '80%': {opacity: 0},
     to: {opacity: 1}
 });
-var overlay = new Group().addTo(stage);
+var overlay = new Group().addTo(mainMovie);
 overlay
   .attr({x: 120, y: 45, scale:0.87, origin: {x:0, y:0}})
   .animate(animation)
@@ -54,5 +55,4 @@ var jsText = new Path("m 187.27876,962.52425 c -0.16999,-0.17579 -2.28507,-0.485
 var clip = new Path("m 292,1057 c -1,0 -2,-0 -3,-0 C 286,1056 2,946 2,622 V 385 c 0,-5 4,-10 10,-10 H 571 c 5,0 10,4 10,10 v 236 c 0,324 -283,433 -286,434 -1,0 -2,0 -3,0 z")
   .attr({scale: 0.44, y: -41, x: 120, origin: {x:0, y:0}})
 ;
-stage.attr({clip: clip});
-//setTimeout(function() { stage.attr({clip: clip}); }, animationTime * 1000);
+setTimeout(function() { mainMovie.attr({clip: clip}); }, animationTime * 1000);
