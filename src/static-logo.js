@@ -1,7 +1,9 @@
 var color = 'orange';
 var animationTime = 1; // in seconds
 
-var mainMovie = new Movie().addTo(stage);
+var mainMovie = new Movie().addTo(stage)
+  .attr({x: -120, y: -123})
+;
 
 var rects = new Group().addTo(mainMovie);
 rects.attr({scale:0.2, rotation: -0.25*Math.PI, y: 200});
