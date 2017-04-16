@@ -1,7 +1,7 @@
 var color = '#ff9800';
 
 var offsetDueToHardcodedPathForFrame = {x: -120, y: -123};
-var movieScale = stage.width / 300;
+var movieScale = 1;
 var mainMovie = new Movie().addTo(stage)
   .attr(offsetDueToHardcodedPathForFrame)
   .attr({scale: movieScale, origin: {x: -offsetDueToHardcodedPathForFrame.x, y: -offsetDueToHardcodedPathForFrame.y}})
