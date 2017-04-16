@@ -1,8 +1,12 @@
 var color = '#ff9800';
 
+var offsetDueToHardcodedPathForFrame = {x: -120, y: -123};
+var movieScale = stage.width / 300;
 var mainMovie = new Movie().addTo(stage)
-  .attr({x: -120, y: -123})
+  .attr(offsetDueToHardcodedPathForFrame)
+  .attr({scale: movieScale, origin: {x: -offsetDueToHardcodedPathForFrame.x, y: -offsetDueToHardcodedPathForFrame.y}})
 ;
+
 
 var rects = new Group().addTo(mainMovie);
 rects.attr({scale:0.2, rotation: -0.25*Math.PI, y: 200});

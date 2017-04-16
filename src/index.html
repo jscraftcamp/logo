@@ -9,6 +9,12 @@
   height: 300px;
   border: 1px solid grey;
 }
+#resizingLogo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 1px solid grey;
+}
 #animatedLogo {
   position: relative;
   width: 300px;
@@ -24,9 +30,13 @@ for any inspiration like a better animation or anything. We love to get helping 
 </p>
 <p>The logo (since 2017) is built using <a href="https://github.com/uxebu/bonsai">Bonsai, a SVG animation library</a>.</p>
 
-<div style="display: inline-table; width: 500px">
+<div style="display: inline-table; width: 400px">
   <h1>Static logo</h1>
   <div id="staticLogo"></div>
+</div>
+<div style="display: inline-table; width: 300px">
+  <h1>Resized static logo</h1>
+  <div id="resizingLogo"></div>
 </div>
 <div style="display: inline-table">
   <h1>Animated logo</h1>
@@ -35,15 +45,24 @@ for any inspiration like a better animation or anything. We love to get helping 
 
 <script>
 
-  bonsai.run(document.getElementById('staticLogo'), 'static-logo.js', {
+  // run the animated logo first, seems some timing issue when it runs last :(
+  bonsai.run(document.getElementById('animatedLogo'), 'animated-logo.js', {
     height: window.innerHeight,
     width: window.innerWidth,
     framerate: 50
   });
 
-  bonsai.run(document.getElementById('animatedLogo'), 'animated-logo.js', {
-    height: window.innerHeight,
-    width: window.innerWidth,
+  var staticLogo = document.getElementById('staticLogo');
+  bonsai.run(staticLogo, 'static-logo.js', {
+    height: staticLogo.style.height,
+    width: staticLogo.style.width,
+    framerate: 50
+  });
+
+  var resizingLogo = document.getElementById('resizingLogo');
+  bonsai.run(resizingLogo, 'static-logo.js', {
+    height: resizingLogo.style.height,
+    width: resizingLogo.style.width,
     framerate: 50
   });
 </script>
