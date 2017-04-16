@@ -1,5 +1,4 @@
 var color = '#ff9800';
-var animationTime = 1; // in seconds
 
 var mainMovie = new Movie().addTo(stage)
   .attr({x: -120, y: -123})
