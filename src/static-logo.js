@@ -22,12 +22,14 @@ var rect = new Rect(0, 0, 100, 100)
 
 var box = rect.getAbsoluteBoundingBox();
 function cloneRect(xMultiplier, yMultiplier) {
-  return rect
+  var newRect = rect
     .clone({attributes: true})
     .attr({matrix: rect.attr().matrix})
     .attr({x: xMultiplier * box.width, y: yMultiplier * box.height})
     .addTo(rects)
   ;
+    newRect.on('pointermove', function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) });
+  return newRect;
 }
 
 var previousYears = [{x: 3, y: 5}];
