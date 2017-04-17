@@ -28,7 +28,9 @@ function cloneRect(xMultiplier, yMultiplier) {
     .attr({x: xMultiplier * box.width, y: yMultiplier * box.height})
     .addTo(rects)
   ;
+  if (!(previousYears[0].x === xMultiplier && previousYears[0].y === yMultiplier)) {
     newRect.on('pointermove', function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) });
+  }
   return newRect;
 }
 
