@@ -22,13 +22,24 @@ var rect = new Rect(0, 0, 100, 100)
 
 var box = rect.getAbsoluteBoundingBox();
 function cloneRect(xMultiplier, yMultiplier) {
+  let x = xMultiplier * box.width;
+  let y = yMultiplier * box.height;
   var newRect = rect
     .clone({attributes: true})
     .attr({matrix: rect.attr().matrix})
-    .attr({x: xMultiplier * box.width, y: yMultiplier * box.height})
+    .attr({x: x, y: y})
     .addTo(rects)
   ;
-  if (!(previousYears[0].x === xMultiplier && previousYears[0].y === yMultiplier)) {
+  if (previousYears[0].x === xMultiplier && previousYears[0].y === yMultiplier) {
+    var other = new Star(x+20, y+140, 100, 12).attr({fillColor: '#3399ff', scale: 2});
+    newRect.on('pointermove', function() {
+      this.morphTo(other, '0.5s');
+      var that = this;
+      setTimeout(function() {
+        var actualRect = rect.clone({attributes: true}).attr({fillColor: '#3399ff',matrix: rect.attr().matrix}).attr({x: x, y: y});
+        that.morphTo(actualRect, '0.5s'); }, 1500);
+    });
+  } else {
     newRect.on('pointermove', function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) });
   }
   return newRect;
