@@ -32,15 +32,22 @@ function cloneRect(xMultiplier, yMultiplier) {
   ;
   if (previousYears[0].x === xMultiplier && previousYears[0].y === yMultiplier) {
     var other = new Star(x+20, y+140, 100, 12).attr({fillColor: '#3399ff', scale: 2});
-    newRect.on('pointermove', function() {
+
+    var morphAnim = function() {
       this.morphTo(other, '0.5s');
       var that = this;
       setTimeout(function() {
-        var actualRect = rect.clone({attributes: true}).attr({fillColor: '#3399ff',matrix: rect.attr().matrix}).attr({x: x, y: y});
-        that.morphTo(actualRect, '0.5s'); }, 1500);
-    });
+        var actualRect = rect.clone({ attributes: true }).attr({
+          fillColor: '#3399ff',
+          matrix: rect.attr().matrix
+        }).attr({ x: x, y: y });
+        that.morphTo(actualRect, '0.5s');
+      }, 1500);
+    };
+    newRect.on('pointermove', morphAnim);
   } else {
-    newRect.on('pointermove', function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) });
+    var rotateAnim = function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) };
+    newRect.on('pointermove', rotateAnim);
   }
   return newRect;
 }
