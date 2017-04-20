@@ -45,9 +45,11 @@ function cloneRect(xMultiplier, yMultiplier) {
       }, 1500);
     };
     newRect.on('pointermove', morphAnim);
+    newRect.on('click', morphAnim);
   } else {
     var rotateAnim = function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) };
     newRect.on('pointermove', rotateAnim);
+    newRect.on('click', rotateAnim);
   }
   return newRect;
 }
