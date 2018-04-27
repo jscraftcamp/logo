@@ -4,14 +4,14 @@ const assert = require('assert');
 
 const noop = () => {};
 
-const cloneDiamonds = (cloneDiamond, cloneDiamondWithColor) => {
+const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
     cloneDiamond(row, column);
     cloneDiamondWithColor(3, 5, '#ff9800')
   }
 }
 
-const cloneDiamondsWithoutColorHandling = cloneDiamond => cloneDiamonds(cloneDiamond, noop);
+const cloneDiamondsWithoutColorHandling = cloneDiamond => cloneDiamonds({}, cloneDiamond, noop);
 
 const buildSpy = () => {
   const spy = (...args) => {
@@ -35,7 +35,8 @@ describe('Years config', () => {
     it('for diamond of 2016 call it with pos 3x5 and color #ff9800', () => {
       const cloneDiamondFn = buildSpy();
       const cloneDiamondWithColorFn = buildSpy();
-      cloneDiamonds(cloneDiamondFn, cloneDiamondWithColorFn);
+      const config = {2016: {position: {x: 3, y: 5}, color: '#ff9800'}};
+      cloneDiamonds(config, cloneDiamondFn, cloneDiamondWithColorFn);
       assert(cloneDiamondWithColorFn.wasCalledWith([3,5, '#ff9800']));
     });
   });
