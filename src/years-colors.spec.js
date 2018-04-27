@@ -33,12 +33,17 @@ describe('Years config', () => {
       cloneDiamondsWithoutColorHandling(cloneDiamondFn);
       assert.equal(cloneDiamondFn.numberOfCalls, 11*6);
     });
-    it('for diamond of 2016 call it with pos 3x5 and color #ff9800', () => {
-      const cloneDiamondFn = buildSpy();
-      const cloneDiamondWithColorFn = buildSpy();
-      const config = {2016: {position: {x: 3, y: 5}, color: '#ff9800'}};
-      cloneDiamonds(config, cloneDiamondFn, cloneDiamondWithColorFn);
-      assert(cloneDiamondWithColorFn.wasCalledWith([3,5, '#ff9800']));
+    describe('WHEN one year is configured differently', () => {
+      const cloneWithOneColoredDiamond = (cloneDiamondWithColorFn) => {
+        const config = { 2016: { position: { x: 3, y: 5 }, color: '#ff9800' } };
+        cloneDiamonds(config, noop, cloneDiamondWithColorFn);
+      }
+      it('clone diamond with given color', () => {
+        const cloneDiamondWithColorFn = buildSpy();
+        cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
+        assert(cloneDiamondWithColorFn.wasCalledWith([3,5, '#ff9800']));
+      });
+      });
     });
   });
 });
