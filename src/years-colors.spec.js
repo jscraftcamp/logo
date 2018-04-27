@@ -9,9 +9,9 @@ const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
     const configs = Object.values(config);
     const numberOfConfigs = configs.length;
     if (numberOfConfigs === 1 && configs[0].position.x === row && configs[0].position.y === column) {
-      cloneDiamondWithColor(config[2016].position.x, config[2016].position.y, config[2016].color);
+      cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
     } else if (numberOfConfigs === 2 && configs[1].position.x === row && configs[1].position.y === column) {
-      cloneDiamondWithColor(config[2017].position.x, config[2017].position.y, config[2017].color);
+      cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
     } else {
       cloneDiamond(row, column);
     }
