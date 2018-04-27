@@ -53,6 +53,11 @@ describe('Years config', () => {
         cloneWithOneColoredDiamond(cloneDiamondWithColorFn, cloneDiamondFn);
         assert.equal(cloneDiamondFn.numberOfCalls, 11*6-1);
       });
+      it('clone ONLY one colored diamond', () => {
+        const cloneDiamondWithColorFn = buildSpy();
+        cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
+        assert.equal(cloneDiamondWithColorFn.numberOfCalls, 1);
+      });
     });
   });
 });
