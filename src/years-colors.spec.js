@@ -14,10 +14,14 @@ const cloneDiamonds = (cloneDiamond, cloneDiamondWithColor) => {
 const cloneDiamondsWithoutColorHandling = cloneDiamond => cloneDiamonds(cloneDiamond, noop);
 
 const buildSpy = () => {
-  const spy = () => {
+  const spy = (...args) => {
     spy.numberOfCalls++;
+    spy.calledWith.push(args);
   };
   spy.numberOfCalls = 0;
+  spy.calledWith = [];
+  spy.wasCalledWith = expectedArgs => 
+    spy.calledWith.some(args => JSON.stringify(expectedArgs) === JSON.stringify(args));
   return spy;  
 }
 
@@ -32,7 +36,7 @@ describe('Years config', () => {
       const cloneDiamondFn = buildSpy();
       const cloneDiamondWithColorFn = buildSpy();
       cloneDiamonds(cloneDiamondFn, cloneDiamondWithColorFn);
-      assert.equal(cloneDiamondWithColorFn.calledWith, [3,5, '#ff9800']);
+      assert(cloneDiamondWithColorFn.wasCalledWith([3,5, '#ff9800']));
     });
   });
 });
