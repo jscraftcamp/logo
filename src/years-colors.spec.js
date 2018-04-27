@@ -8,9 +8,9 @@ const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
     const configs = Object.values(config);
     const numberOfConfigs = configs.length;
-    if (numberOfConfigs === 1 && configs[0].position.x === row && configs[0].position.y === column) {
+    if (numberOfConfigs > 0 && configs[0].position.x === row && configs[0].position.y === column) {
       cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
-    } else if (numberOfConfigs === 2 && configs[1].position.x === row && configs[1].position.y === column) {
+    } else if (numberOfConfigs > 1 && configs[1].position.x === row && configs[1].position.y === column) {
       cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
     } else {
       cloneDiamond(row, column);
@@ -65,6 +65,7 @@ describe('Years config', () => {
         const config = { 
           2016: { position: { x: 3, y: 5 }, color: '#ff9800' }, 
           2017: { position: { x: 4, y: 5 }, color: 'green' }, 
+          2018: { position: { x: 5, y: 5 }, color: 'blue' }, 
         };
         cloneDiamonds(config, cloneDiamondSpy, cloneDiamondWithColorSpy);
       }
