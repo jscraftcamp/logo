@@ -7,7 +7,8 @@ const noop = () => {};
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
     cloneDiamond(row, column);
-    cloneDiamondWithColor(3, 5, '#ff9800')
+    if (Object.values(config).length)
+      cloneDiamondWithColor(config[2016].position.x, config[2016].position.y, config[2016].color)
   }
 }
 
