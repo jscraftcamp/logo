@@ -7,13 +7,18 @@ const cloneDiamonds = (cloneDiamondFn) => {
   }
 }
 
+const buildSpy = () => {
+  const spy = () => {
+    spy.numberOfCalls++;
+  };
+  spy.numberOfCalls = 0;
+  return spy;  
+}
+
 describe('Years config', () => {
   describe('clone diamond shapes', () => {
     it('for all 11 rows and 6 columns', () => {
-      const cloneDiamondFn = () => {
-        cloneDiamondFn.numberOfCalls++;
-      };
-      cloneDiamondFn.numberOfCalls = 0;
+      const cloneDiamondFn = buildSpy();
       cloneDiamonds(cloneDiamondFn);
       assert.equal(cloneDiamondFn.numberOfCalls, 11*6);
     });
