@@ -12,6 +12,8 @@ const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
       cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
     } else if (numberOfConfigs > 1 && configs[1].position.x === row && configs[1].position.y === column) {
       cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
+    } else if (numberOfConfigs > 2 && configs[2].position.x === row && configs[2].position.y === column) {
+      cloneDiamondWithColor(configs[2].position.x, configs[2].position.y, configs[2].color);
     } else {
       cloneDiamond(row, column);
     }
@@ -73,6 +75,11 @@ describe('Years config', () => {
         const cloneDiamondWithColorFn = buildSpy();
         cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
         assert(cloneDiamondWithColorFn.wasCalledWith([4, 5, 'green']));
+      });
+      it('clone diamond with third year`s config', () => {
+        const cloneDiamondWithColorFn = buildSpy();
+        cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
+        assert(cloneDiamondWithColorFn.wasCalledWith([5, 5, 'blue']));
       });
     });
   });
