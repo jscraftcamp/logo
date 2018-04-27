@@ -45,20 +45,19 @@ describe('Years config', () => {
         cloneDiamonds(config, cloneDiamondSpy, cloneDiamondWithColorSpy);
       }
       it('clone diamond with given color', () => {
-        const cloneDiamondWithColorFn = buildSpy();
-        cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
-        assert(cloneDiamondWithColorFn.wasCalledWith([3,5, '#ff9800']));
+        const spy = buildSpy();
+        cloneWithOneColoredDiamond(spy);
+        assert(spy.wasCalledWith([3, 5, '#ff9800']));
       });
       it('clone only 11*6-1 "default" diamonds', () => {
-        const cloneDiamondWithColorFn = buildSpy();
-        const cloneDiamondFn = buildSpy();
-        cloneWithOneColoredDiamond(cloneDiamondWithColorFn, cloneDiamondFn);
-        assert.equal(cloneDiamondFn.numberOfCalls, 11*6-1);
+        const defaultDiamondSpy = buildSpy();
+        cloneWithOneColoredDiamond(noop, defaultDiamondSpy);
+        assert.equal(defaultDiamondSpy.numberOfCalls, 11*6-1);
       });
       it('clone ONLY one colored diamond', () => {
-        const cloneDiamondWithColorFn = buildSpy();
-        cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
-        assert.equal(cloneDiamondWithColorFn.numberOfCalls, 1);
+        const spy = buildSpy();
+        cloneWithOneColoredDiamond(spy);
+        assert.equal(spy.numberOfCalls, 1);
       });
     });
     describe('WHEN multiple years are configured', () => {
@@ -72,7 +71,7 @@ describe('Years config', () => {
       it('clone diamond with second year`s config', () => {
         const cloneDiamondWithColorFn = buildSpy();
         cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
-        assert(cloneDiamondWithColorFn.wasCalledWith([4,5, 'green']));
+        assert(cloneDiamondWithColorFn.wasCalledWith([4, 5, 'green']));
       });
     });
   });
