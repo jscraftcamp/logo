@@ -1,9 +1,10 @@
 const {unit: it, spec: describe} = require('kavun');
 const assert = require('assert');
 
-const cloneDiamonds = (cloneDiamondFn) => {
+const cloneDiamonds = (cloneDiamond, cloneDiamondWithColor) => {
   for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
-    cloneDiamondFn(row, column);
+    cloneDiamond(row, column);
+    cloneDiamondWithColor(3, 5, '#ff9800')
   }
 }
 
@@ -21,6 +22,12 @@ describe('Years config', () => {
       const cloneDiamondFn = buildSpy();
       cloneDiamonds(cloneDiamondFn);
       assert.equal(cloneDiamondFn.numberOfCalls, 11*6);
+    });
+    it('for diamond of 2016 call it with pos 3x5 and color #ff9800', () => {
+      const cloneDiamondFn = buildSpy();
+      const cloneDiamondWithColorFn = buildSpy();
+      cloneDiamonds(cloneDiamondFn, cloneDiamondWithColorFn);
+      assert.equal(cloneDiamondWithColorFn.calledWith, [3,5, '#ff9800']);
     });
   });
 });
