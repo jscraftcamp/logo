@@ -6,9 +6,13 @@ const noop = () => {};
 
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
-    cloneDiamond(row, column);
-    if (Object.values(config).length)
-      cloneDiamondWithColor(config[2016].position.x, config[2016].position.y, config[2016].color)
+    const configs = Object.values(config);
+    let configGiven = configs.length;
+    if (configGiven && configs[0].position.x === row && configs[0].position.y === column) {
+      cloneDiamondWithColor(config[2016].position.x, config[2016].position.y, config[2016].color);
+    } else {
+      cloneDiamond(row, column);
+    }
   }
 }
 
@@ -34,15 +38,20 @@ describe('Years config', () => {
       assert.equal(cloneDiamondFn.numberOfCalls, 11*6);
     });
     describe('WHEN one year is configured differently', () => {
-      const cloneWithOneColoredDiamond = (cloneDiamondWithColorFn) => {
+      const cloneWithOneColoredDiamond = (cloneDiamondWithColorSpy, cloneDiamondSpy = noop) => {
         const config = { 2016: { position: { x: 3, y: 5 }, color: '#ff9800' } };
-        cloneDiamonds(config, noop, cloneDiamondWithColorFn);
+        cloneDiamonds(config, cloneDiamondSpy, cloneDiamondWithColorSpy);
       }
       it('clone diamond with given color', () => {
         const cloneDiamondWithColorFn = buildSpy();
         cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
         assert(cloneDiamondWithColorFn.wasCalledWith([3,5, '#ff9800']));
       });
+      it('clone only 11*6-1 "default" diamonds', () => {
+        const cloneDiamondWithColorFn = buildSpy();
+        const cloneDiamondFn = buildSpy();
+        cloneWithOneColoredDiamond(cloneDiamondWithColorFn, cloneDiamondFn);
+        assert.equal(cloneDiamondFn.numberOfCalls, 11*6-1);
       });
     });
   });
