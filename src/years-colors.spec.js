@@ -1,4 +1,5 @@
 const {unit: it, spec: describe} = require('kavun');
+const xit = () => {};
 const assert = require('assert');
 
 const noop = () => {};
