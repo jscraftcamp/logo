@@ -4,10 +4,7 @@ const assert = require('assert');
 
 const noop = () => {};
 
-const isSamePosition = (pos1, pos2) => {
-  return pos1.x === pos2.x && pos1.y === pos2.y;
-};
-
+const isSamePosition = (pos1, pos2) => pos1.x === pos2.x && pos1.y === pos2.y;
 const colorForPosition = (config, pos) => {
   const configs = Object.values(config);
   const found = configs.filter(config => isSamePosition(config.position, pos));
