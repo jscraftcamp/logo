@@ -1,5 +1,10 @@
+const yearsConfig = {
+  2016: {position: {x: 3, y: 5}, color: '#ff9800'},
+  2017: {position: {x: 4, y: 5}, color: '#3399ff'},
+};
+
 const theMovie = () => {
-  var color = '#ff00ff';
+  var color = '#33aa98';
 
   var offsetDueToHardcodedPathForFrame = { x: -120, y: -123 };
   var movieScale = stage.width / 300;
@@ -59,10 +64,6 @@ const theMovie = () => {
     return newRect;
   }
 
-  var previousYears = [{ x: 3, y: 5 }, { x: 4, y: 5 }];
-  const yearsConfig = {
-    2016: {position: {x: 3, y: 5}, color: '#ff9800'},
-  };
   const cloneDiamond = (x, y) => cloneRect(x, y);
   const cloneDiamondWithColor = (x, y, color) => cloneRect(x, y).attr({ fillColor: color });;
   cloneDiamonds(yearsConfig, cloneDiamond, cloneDiamondWithColor);
