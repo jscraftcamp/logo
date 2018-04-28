@@ -4,11 +4,15 @@ const assert = require('assert');
 
 const noop = () => {};
 
+const isSamePosition = (pos1, pos2) => {
+  return pos1.x === pos2.x && pos1.y === pos2.y;
+};
+
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
     const configs = Object.values(config);
     const numberOfConfigs = configs.length;
-    if (numberOfConfigs > 0 && configs[0].position.x === row && configs[0].position.y === column) {
+    if (numberOfConfigs > 0 && isSamePosition(configs[0].position, {x: row, y: column})) {
       cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
     } else if (numberOfConfigs > 1 && configs[1].position.x === row && configs[1].position.y === column) {
       cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
