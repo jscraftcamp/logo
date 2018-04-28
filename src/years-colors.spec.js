@@ -1,26 +1,9 @@
 const {unit: it, spec: describe} = require('kavun');
 const xit = () => {};
 const assert = require('assert');
+const {cloneDiamonds} = require('./static-logo');
 
 const noop = () => {};
-
-const isSamePosition = (pos1, pos2) => pos1.x === pos2.x && pos1.y === pos2.y;
-const colorForPosition = (config, pos) => {
-  const configs = Object.values(config);
-  const found = configs.filter(config => isSamePosition(config.position, pos));
-  return found.length === 1 ? found[0].color : null;
-}
-
-const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
-  for (var x = 0; x < 11; x++) for (var y = 0; y < 6; y++) {
-    const color = colorForPosition(config, {x, y});
-    if (color) {
-      cloneDiamondWithColor(x, y, color);
-    } else {
-      cloneDiamond(x, y);
-    }
-  }
-}
 
 const cloneDiamondsWithoutColorHandling = cloneDiamond => cloneDiamonds({}, cloneDiamond, noop);
 
