@@ -14,9 +14,9 @@ const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
     const numberOfConfigs = configs.length;
     if (numberOfConfigs > 0 && isSamePosition(configs[0].position, {x, y})) {
       cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
-    } else if (numberOfConfigs > 1 && configs[1].position.x === x && configs[1].position.y === y) {
+    } else if (numberOfConfigs > 1 && isSamePosition(configs[1].position, {x, y})) {
       cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
-    } else if (numberOfConfigs > 2 && configs[2].position.x === x && configs[2].position.y === y) {
+    } else if (numberOfConfigs > 2 && isSamePosition(configs[2].position, {x, y})) {
       cloneDiamondWithColor(configs[2].position.x, configs[2].position.y, configs[2].color);
     } else {
       cloneDiamond(x, y);
