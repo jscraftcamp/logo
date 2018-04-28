@@ -34,8 +34,9 @@ const theMovie = () => {
       .attr({ x: x, y: y })
       .addTo(rects)
     ;
-    if (previousYears[0].x === xMultiplier && previousYears[0].y === yMultiplier) {
-      var other = new Star(x + 20, y + 140, 100, 12).attr({ fillColor: '#3399ff', scale: 2 });
+    const color4pos = colorForPosition(yearsConfig, {x: xMultiplier, y: yMultiplier});
+    if (color4pos) {
+      var other = new Star(x + 20, y + 140, 100, 12).attr({ fillColor: color4pos, scale: 2 });
 
       var morphAnim = function() {
         this.morphTo(other, '0.5s');
