@@ -10,16 +10,8 @@ const isSamePosition = (pos1, pos2) => {
 
 const colorForPosition = (config, pos) => {
   const configs = Object.values(config);
-  const numberOfConfigs = configs.length;
-  if (numberOfConfigs > 0 && isSamePosition(configs[0].position, pos)) {
-    return configs[0].color;
-  }
-  if (numberOfConfigs > 1 && isSamePosition(configs[1].position, pos)) {
-    return configs[1].color;
-  }
-  if (numberOfConfigs > 2 && isSamePosition(configs[2].position, pos)) {
-    return configs[2].color;
-  }
+  const found = configs.filter(config => isSamePosition(config.position, pos));
+  return found.length === 1 ? found[0].color : null;
 }
 
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
