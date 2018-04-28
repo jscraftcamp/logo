@@ -9,17 +9,17 @@ const isSamePosition = (pos1, pos2) => {
 };
 
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
-  for (var row = 0; row < 11; row++) for (var column = 0; column < 6; column++) {
+  for (var x = 0; x < 11; x++) for (var y = 0; y < 6; y++) {
     const configs = Object.values(config);
     const numberOfConfigs = configs.length;
-    if (numberOfConfigs > 0 && isSamePosition(configs[0].position, {x: row, y: column})) {
+    if (numberOfConfigs > 0 && isSamePosition(configs[0].position, {x, y})) {
       cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
-    } else if (numberOfConfigs > 1 && configs[1].position.x === row && configs[1].position.y === column) {
+    } else if (numberOfConfigs > 1 && configs[1].position.x === x && configs[1].position.y === y) {
       cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
-    } else if (numberOfConfigs > 2 && configs[2].position.x === row && configs[2].position.y === column) {
+    } else if (numberOfConfigs > 2 && configs[2].position.x === x && configs[2].position.y === y) {
       cloneDiamondWithColor(configs[2].position.x, configs[2].position.y, configs[2].color);
     } else {
-      cloneDiamond(row, column);
+      cloneDiamond(x, y);
     }
   }
 }
