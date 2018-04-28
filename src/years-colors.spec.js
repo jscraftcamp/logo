@@ -8,16 +8,25 @@ const isSamePosition = (pos1, pos2) => {
   return pos1.x === pos2.x && pos1.y === pos2.y;
 };
 
+const colorForPosition = (config, pos) => {
+  const configs = Object.values(config);
+  const numberOfConfigs = configs.length;
+  if (numberOfConfigs > 0 && isSamePosition(configs[0].position, pos)) {
+    return configs[0].color;
+  }
+  if (numberOfConfigs > 1 && isSamePosition(configs[1].position, pos)) {
+    return configs[1].color;
+  }
+  if (numberOfConfigs > 2 && isSamePosition(configs[2].position, pos)) {
+    return configs[2].color;
+  }
+}
+
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   for (var x = 0; x < 11; x++) for (var y = 0; y < 6; y++) {
-    const configs = Object.values(config);
-    const numberOfConfigs = configs.length;
-    if (numberOfConfigs > 0 && isSamePosition(configs[0].position, {x, y})) {
-      cloneDiamondWithColor(configs[0].position.x, configs[0].position.y, configs[0].color);
-    } else if (numberOfConfigs > 1 && isSamePosition(configs[1].position, {x, y})) {
-      cloneDiamondWithColor(configs[1].position.x, configs[1].position.y, configs[1].color);
-    } else if (numberOfConfigs > 2 && isSamePosition(configs[2].position, {x, y})) {
-      cloneDiamondWithColor(configs[2].position.x, configs[2].position.y, configs[2].color);
+    const color = colorForPosition(config, {x, y});
+    if (color) {
+      cloneDiamondWithColor(x, y, color);
     } else {
       cloneDiamond(x, y);
     }
