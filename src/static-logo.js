@@ -45,19 +45,18 @@ const startTheMovie = () => {
 
       const morphAnim = ({target}) => {
         target.morphTo(other, '0.5s');
-        var that = target;
-        setTimeout(function() {
-          var actualRect = rect.clone({ attributes: true }).attr({
+        setTimeout(() => {
+          const actualRect = rect.clone({ attributes: true }).attr({
             fillColor: '#3399ff',
             matrix: rect.attr().matrix
           }).attr({ x: x, y: y });
-          that.morphTo(actualRect, '0.5s');
+          target.morphTo(actualRect, '0.5s');
         }, 1500);
       };
       newRect.on('pointermove', morphAnim);
       newRect.on('click', morphAnim);
     } else {
-      const rotateAnim = function() { this.animate('0.4s', { rotation: Math.PI * 2.35 }) };
+      const rotateAnim = ({target}) => target.animate('0.4s', { rotation: Math.PI * 2.35 });
       newRect.on('pointermove', rotateAnim);
       newRect.on('click', rotateAnim);
     }
