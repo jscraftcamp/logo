@@ -4,11 +4,7 @@ const yearsConfig = {
 };
 
 const startTheMovie = () => {
-  // vote for which colors to choose happens on twitter :)
-  // https://twitter.com/JSCraftCamp/status/990249027215286274
-  var color = '#33aa98';
-  var color = '#aa3398';
-  var color = '#aa9833';
+  var color = '#33aa98'; // determined by vote https://twitter.com/JSCraftCamp/status/990249027215286274
 
   const offsetDueToHardcodedPathForFrame = { x: -120, y: -123 };
   const movieScale = stage.width / 300;
