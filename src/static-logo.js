@@ -43,9 +43,9 @@ const startTheMovie = () => {
     if (color4pos) {
       const other = new Star(x + 20, y + 140, 100, 12).attr({ fillColor: color4pos, scale: 2 });
 
-      const morphAnim = () => {
-        this.morphTo(other, '0.5s');
-        var that = this;
+      const morphAnim = ({target}) => {
+        target.morphTo(other, '0.5s');
+        var that = target;
         setTimeout(function() {
           var actualRect = rect.clone({ attributes: true }).attr({
             fillColor: '#3399ff',
