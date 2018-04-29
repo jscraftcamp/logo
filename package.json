@@ -1,0 +1,24 @@
+{
+  "name": "jscraftcamp-logo",
+  "version": "1.0.0",
+  "description": "This repo contains the logo for [JSCraftCamp][jscc]. Find [the source on github][source] and feel free to send PRs for any inspiration like a better animation or anything. We love to get helping hands.",
+  "main": "index.js",
+  "scripts": {
+    "test": "kavun src/",
+    "start": "ws --cors.origin=* --port 8999"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jscraftcamp/logo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jscraftcamp/logo/issues"
+  },
+  "homepage": "https://github.com/jscraftcamp/logo#readme",
+  "devDependencies": {
+    "kavun": "^0.2.0",
+    "local-web-server": "^2.5.1"
+  }
+}
