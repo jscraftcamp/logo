@@ -47,7 +47,7 @@ const startTheMovie = () => {
         target.morphTo(other, '0.5s');
         setTimeout(() => {
           const actualRect = rect.clone({ attributes: true }).attr({
-            fillColor: '#3399ff',
+            fillColor: color4pos,
             matrix: rect.attr().matrix
           }).attr({ x: x, y: y });
           target.morphTo(actualRect, '0.5s');
