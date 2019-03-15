@@ -1,6 +1,7 @@
 const yearsConfig = {
   2016: {position: {x: 3, y: 5}, color: '#ff9800'},
   2017: {position: {x: 4, y: 5}, color: '#3399ff'},
+  2018: {position: {x: 5, y: 5}, color: '#33aa98'}, // determined by vote https://twitter.com/JSCraftCamp/status/990249027215286274
 };
 
 const startTheMovie = () => {
