@@ -69,3 +69,14 @@ describe('Years config', () => {
     });
   });
 });
+
+const oneColorOf = (colors) => {
+  return colors[0];
+};
+
+describe('`oneColorOf()`', () => {
+  it('returns the color, when only one is given', () => {
+    const color = oneColorOf(['white']);
+    assert.equal(color, 'white');
+  });
+});
