@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jscraftcamp/logo#readme",
   "devDependencies": {
+    "hamjest": "^3.2.3",
     "kavun": "^3.0.0",
     "local-web-server": "^2.5.1"
   }
