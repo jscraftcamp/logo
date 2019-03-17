@@ -72,7 +72,8 @@ describe('Years config', () => {
 });
 
 const oneColorOf = (colors) => {
-  return colors[0];
+  const randomIndex = -~(Math.random() * colors.length) - 1;
+  return colors[randomIndex];
 };
 
 describe('`oneColorOf()`', () => {
@@ -84,6 +85,9 @@ describe('`oneColorOf()`', () => {
     const color = oneColorOf(['white', 'black']);
     assertThat(color, anyOf(equalTo('white'), equalTo('black')));
     assertThatFnEventuallyReturns(() => oneColorOf(['white', 'black']), 'black');
+  });
+  it('never returns anything else', () => {
+    assertThatFnOnlyReturns(() => oneColorOf(['white', 'black']), ['white', 'black']);
   });
 });
 
@@ -97,5 +101,21 @@ const assertThatFnEventuallyReturns = (fn, eventualReturnValue) => {
       throw new Error(`Function never returned "${eventualReturnValue}", tried ${maxTries} times.`);
     }
     returnValue = fn();
+  }
+};
+
+const assertThatFnOnlyReturns = (fn, allowedReturnValues) => {
+  const maxTries = 1000;
+  let tries = 0;
+  let actualReturnValue;
+  while (true) {
+    actualReturnValue = fn();
+    if (!allowedReturnValues.includes(actualReturnValue)) {
+      throw new Error(`Function returned ${actualReturnValue}, but expected only one of ${allowedReturnValues}`);
+    }
+    tries++;
+    if (tries >= maxTries) {
+      return;
+    }
   }
 };
