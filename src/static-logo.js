@@ -68,10 +68,10 @@ const startTheMovie = () => {
       newRect.on('click', rotateAnim);
     }
     return newRect;
-  }
+  };
 
   const cloneDiamond = (x, y) => cloneRect(x, y);
-  const cloneDiamondWithColor = (x, y, color) => cloneRect(x, y).attr({ fillColor: color });;
+  const cloneDiamondWithColor = (x, y, color) => cloneRect(x, y).attr({ fillColor: color });
   cloneDiamonds(yearsConfig, cloneDiamond, cloneDiamondWithColor);
   
   const theFrame = new Path("m 292.57164,1057.7483 c -1.2414,0 -2.4621,-0.2275 -3.6207,-0.662 C 286.09574,1056.0311 2.9164393,946.31386 2.9164393,622.18972 V 385.33455 c 0,-5.71035 4.6345,-10.34483 10.3448997,-10.34483 H 571.88194 c 5.7104,0 10.3449,4.63448 10.3449,10.34483 v 236.85517 c 0,324.12414 -283.1793,433.82068 -286.0345,434.89658 -1.1586,0.4345 -2.3793,0.662 -3.6207,0.662 z M 23.606139,395.67938 v 226.51034 c 0,290.19311 236.606901,400.36548 268.965501,414.04138 32.3379,-13.7172 268.9655,-124.24138 268.9655,-414.04138 V 395.67938 H 23.606139 z")
@@ -95,9 +95,9 @@ const colorForPosition = (config, pos) => {
   const configs = Object.values(config);
   const found = configs.filter(config => isSamePosition(config.position, pos));
   return found.length === 1 ? found[0].color : null;
-}
+};
 const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
-  for (var x = 0; x < 11; x++) for (var y = 0; y < 6; y++) {
+  for (let x = 0; x < 11; x++) for (let y = 0; y < 6; y++) {
     const color = colorForPosition(config, {x, y});
     if (color) {
       cloneDiamondWithColor(x, y, color);
@@ -105,10 +105,10 @@ const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
       cloneDiamond(x, y);
     }
   }
-}
+};
 const exportForTesting = () => {
   module.exports = { cloneDiamonds, oneColorOf };
-}
+};
 
 const isInBonsaiEnvironment = typeof stage !== 'undefined';
 if (isInBonsaiEnvironment) startTheMovie();
