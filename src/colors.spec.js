@@ -2,7 +2,7 @@ import {it, describe} from 'kavun';
 import {assertThat, anyOf, equalTo} from 'hamjest';
 const xit = () => {};
 import assert from 'assert';
-import {cloneDiamonds} from "./static-logo";
+import {cloneDiamonds, oneColorOf} from "./static-logo";
 
 const noop = () => {};
 
@@ -70,11 +70,6 @@ describe('Years config', () => {
     });
   });
 });
-
-const oneColorOf = (colors) => {
-  const randomIndex = -~(Math.random() * colors.length) - 1;
-  return colors[randomIndex];
-};
 
 describe('`oneColorOf()`', () => {
   it('returns the color, when only one is given', () => {

@@ -4,11 +4,14 @@ const yearsConfig = {
   2018: {position: {x: 5, y: 5}, color: '#33aa98'}, // determined by vote https://twitter.com/JSCraftCamp/status/990249027215286274
 };
 
+const oneColorOf = (colors) => {
+  const randomIndex = -~(Math.random() * colors.length) - 1;
+  return colors[randomIndex];
+};
+const colorOptions = ['#ececec']; // voted at https://twitter.com/JSCraftCamp/status/1106879993651572736
+
 const startTheMovie = () => {
-  // voting in progress, at https://twitter.com/JSCraftCamp/status/1106879993651572736
-  const colorOptions = ['#ececec', '#f6c400', '#931c92', 'white'];
-  const randomIndexForColorOptions = -~(Math.random() * colorOptions.length) - 1;
-  const color = colorOptions[randomIndexForColorOptions];
+  const color = oneColorOf(colorOptions);
 
   const offsetDueToHardcodedPathForFrame = { x: -120, y: -123 };
   const movieScale = stage.width / 300;
@@ -104,7 +107,7 @@ const cloneDiamonds = (config, cloneDiamond, cloneDiamondWithColor) => {
   }
 }
 const exportForTesting = () => {
-  module.exports = { cloneDiamonds };
+  module.exports = { cloneDiamonds, oneColorOf };
 }
 
 const isInBonsaiEnvironment = typeof stage !== 'undefined';
