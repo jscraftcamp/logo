@@ -1,7 +1,7 @@
-const {unit: it, spec: describe} = require('kavun');
+import {it, describe} from 'kavun';
 const xit = () => {};
-const assert = require('assert');
-const {cloneDiamonds} = require('./static-logo');
+import assert from 'assert';
+import {cloneDiamonds} from "./static-logo";
 
 const noop = () => {};
 
@@ -17,7 +17,7 @@ const buildSpy = () => {
   spy.wasCalledWith = expectedArgs => 
     spy.calledWith.some(args => JSON.stringify(expectedArgs) === JSON.stringify(args));
   return spy;  
-}
+};
 
 describe('Years config', () => {
   describe('clone diamond shapes', () => {
@@ -30,7 +30,7 @@ describe('Years config', () => {
       const cloneWithOneColoredDiamond = (cloneDiamondWithColorSpy, cloneDiamondSpy = noop) => {
         const config = { 2016: { position: { x: 3, y: 5 }, color: '#ff9800' } };
         cloneDiamonds(config, cloneDiamondSpy, cloneDiamondWithColorSpy);
-      }
+      };
       it('clone diamond with given color', () => {
         const spy = buildSpy();
         cloneWithOneColoredDiamond(spy);
@@ -55,7 +55,7 @@ describe('Years config', () => {
           2018: { position: { x: 5, y: 5 }, color: 'blue' }, 
         };
         cloneDiamonds(config, cloneDiamondSpy, cloneDiamondWithColorSpy);
-      }
+      };
       it('clone diamond with second year`s config', () => {
         const cloneDiamondWithColorFn = buildSpy();
         cloneWithOneColoredDiamond(cloneDiamondWithColorFn);
