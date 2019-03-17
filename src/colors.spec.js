@@ -1,4 +1,5 @@
 import {it, describe} from 'kavun';
+import {assertThat, anyOf, equalTo} from 'hamjest';
 const xit = () => {};
 import assert from 'assert';
 import {cloneDiamonds} from "./static-logo";
@@ -79,4 +80,22 @@ describe('`oneColorOf()`', () => {
     const color = oneColorOf(['white']);
     assert.equal(color, 'white');
   });
+  it('returns one of the two colors, when two given', () => {
+    const color = oneColorOf(['white', 'black']);
+    assertThat(color, anyOf(equalTo('white'), equalTo('black')));
+    assertThatFnEventuallyReturns(() => oneColorOf(['white', 'black']), 'black');
+  });
 });
+
+const assertThatFnEventuallyReturns = (fn, eventualReturnValue) => {
+  const maxTries = 1000;
+  let tries = 0;
+  let returnValue = fn();
+  while (returnValue !== eventualReturnValue) {
+    tries++;
+    if (tries >= maxTries) {
+      throw new Error(`Function never returned "${eventualReturnValue}", tried ${maxTries} times.`);
+    }
+    returnValue = fn();
+  }
+};
